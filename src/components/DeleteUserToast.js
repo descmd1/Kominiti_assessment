@@ -4,7 +4,8 @@ import clear from "../icons/delete.svg";
 
 const DeleteUserToast = ({ user, onCancel, onDelete }) => {
   return (
-    <div className="p-4 border rounded-lg shadow-lg custom-toast">
+    <div className="p-4 border rounded-lg shadow-lg custom-toast"
+    style={{ width: "100%", maxWidth: "28rem" }}>
       <img
         src={clear}
         alt="delete"
