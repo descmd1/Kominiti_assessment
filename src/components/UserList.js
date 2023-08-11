@@ -160,13 +160,13 @@ const UserList = ({ users }) => {
   };
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+    <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-3">
       {" "}
       {/* Adjust the grid layout for small screens */}
       <div className="p-4 mt-5 bg-white rounded-lg shadow-lg">
         {currentPage === 1 && (
           <ul className="list-none p-0 m-0 border min-h-40">
-            <div className="flex flex-col sm:flex-row border mb-2 px-4 sm:px-6 py-2 sm:py-4">
+               <div className="flex flex-col sm:flex-row border mb-2 px-4 sm:px-6 py-2 sm:py-4">
               <div className="font-bold mb-2 sm:mb-0 sm:ml-16 w-[20%]">id</div>
               <div className="font-bold mb-2 sm:mb-0 w-[40%]">Full name</div>
               <div className="font-bold mb-2 sm:mb-0 w-[20%]">Priority</div>
@@ -174,40 +174,40 @@ const UserList = ({ users }) => {
             </div>
             {page1.map((user) => (
               <li
-                key={user?.user_id}
-                user_id={user?.user_id}
-                draggable={true}
-                onDragStart={(event) => handleDragStart(event, user)}
-                className="bg-white border p-4 mb-2 cursor-move flex flex-col sm:flex-row items-start sm:items-center justify-between"
-              >
-                <div className="flex items-center w-[20%]">
-                  <img src={drag} alt="Drag" className="mr-2" />
-                  <p className="text-left p-2 ml-4 sm:ml-6 font-semibold ">
-                    {user?.user_id}
-                  </p>
-                </div>
-                <div className="flex-grow mt-2 sm:mt-0 sm:ml-6 w-[40%]">
-                  <p className="font-semibold sm:ml-6">{user.fullname}</p>
-                </div>
-                <div className="flex-grow mt-2 sm:mt-0 sm:ml-6 w-[20%]">
-                  <p className="font-semibold sm:ml-6 text-align-start">
-                    {user.priority}
-                  </p>
-                </div>
-                <div className="flex cursor-pointer mt-2 sm:mt-0 w-[20%]">
-                  <img
-                    src={edit}
-                    alt="Edit"
-                    className="mr-2"
-                    onClick={() => handleEditClick(user)}
-                  />
-                  <img
-                    src={clear}
-                    alt="Delete"
-                    onClick={() => handleDeleteClick(user)}
-                  />
-                </div>
-              </li>
+              key={user?.user_id}
+              user_id={user?.user_id}
+              draggable={true}
+              onDragStart={(event) => handleDragStart(event, user)}
+              className="bg-white border p-2 sm:p-4 mb-2 cursor-move flex flex-col sm:flex-row items-start sm:items-center justify-between"
+            >
+               <div className="flex items-center w-full sm:w-1/5 mb-2 sm:mb-0">
+                <img src={drag} alt="Drag" className="mr-2" />
+                <p className="text-left p-2 ml-4 sm:ml-6 font-semibold ">
+                  {user?.user_id}
+                </p>
+              </div>
+              <div className="flex-grow sm:mt-0 sm:ml-6 w-full sm:w-2/5 mb-2 sm:mb-0">
+                <p className="font-semibold sm:ml-6">{user.fullname}</p>
+              </div>
+              <div className="flex-grow sm:mt-0 sm:ml-6 w-full sm:w-1/5 mb-2 sm:mb-0">
+                <p className="font-semibold sm:ml-6 text-align-start">
+                  {user.priority}
+                </p>
+              </div>
+              <div className="flex cursor-pointer w-full sm:w-1/5">
+                <img
+                  src={edit}
+                  alt="Edit"
+                  className="mr-2"
+                  onClick={() => handleEditClick(user)}
+                />
+                <img
+                  src={clear}
+                  alt="Delete"
+                  onClick={() => handleDeleteClick(user)}
+                />
+              </div>
+            </li>
             ))}
             {/* Edit Modal */}
             {showEditModal && (
@@ -241,7 +241,7 @@ const UserList = ({ users }) => {
         onDrop={handleDrop}
       >
         {/* Target container */}
-        <p>Drag items here</p>
+        <p className="font-bold text-center">Drag items here</p>
         <ul className="list-none p-0 m-0 border min-h-40">
           {draggedList.map((user, index) => (
             <li
@@ -249,7 +249,7 @@ const UserList = ({ users }) => {
               user_id={user?.user_id}
               draggable={true}
               onDragStart={(event) => handleDragStart(event, user, index)}
-              className="bg-white border p-4 mb-2 cursor-move flex flex-col sm:flex-row items-start sm:items-center justify-between"
+              className="bg-white border p-2 sm:p-4 mb-2 cursor-move flex flex-col sm:flex-wrap sm:flex-row items-start sm:items-center justify-between"
             >
               <div className="flex items-center">
                 <img src={drag} alt="Drag" className="mr-2  w-[20%]" />
@@ -281,27 +281,26 @@ const UserList = ({ users }) => {
         </ul>
       </div>
       {/* Pagination buttons */}
-      <div className="flex flex-row justify-between">
-        <p className="text-sm font-bold">Showing 1 to 10 of 20 entries</p>
-        <div className="flex flex-row justify-end gap-5">
-          <button onClick={() => handlePageChange(1)} className="font-bold">
-            Prev{" "}
-            <span className="bg-white-500 hover:bg-green-600 active:bg-green-700 active:text-white rounded-xl focus:outline-none focus:ring focus:ring-green-300 px-4">
-              1
-            </span>
-          </button>
-          <button onClick={() => handlePageChange(2)} className="font-bold">
-            {" "}
-            <span className="bg-white-500 hover:bg-green-600 active:bg-green-700 active:text-white rounded-xl focus:outline-none focus:ring focus:ring-green-300 px-4">
-              2
-            </span>{" "}
-            Next
-          </button>
-        </div>
+      <div className="flex flex-col sm:flex-row justify-center gap-2 sm:gap-5">
+        <button onClick={() => handlePageChange(1)} className="font-bold">
+          Prev{" "}
+          <span className="bg-white-500 hover:bg-green-600 active:bg-green-700 active:text-white rounded-xl focus:outline-none focus:ring focus:ring-green-300 px-4">
+            1
+          </span>
+        </button>
+        <button onClick={() => handlePageChange(2)} className="font-bold">
+          {" "}
+          <span className="bg-white-500 hover:bg-green-600 active:bg-green-700 active:text-white rounded-xl focus:outline-none focus:ring focus:ring-green-300 px-4">
+            2
+          </span>{" "}
+          Next
+        </button>
       </div>
-      <ToastContainer />
+      <ToastContainer position="bottom-center" style={{ width: "100%", maxWidth: "30rem" }}/>
     </div>
   );
 };
 
 export default UserList;
+
+ 

@@ -18,8 +18,12 @@ const EditUserToast = ({ user, onClose, onEdit }) => {
   };
 
   return (
-    <div className="p-4 border rounded-lg shadow-lg custom-toast">
+    <div
+      className="p-4 border rounded-lg shadow-lg custom-toast"
+      style={{ width: "100%", maxWidth: "28rem" }}
+    >
       <h2 className="text-xl font-semibold mb-4">Edit</h2>
+
       <label htmlFor="fullName" className="block mb-2">
         Enter Full Name
       </label>
