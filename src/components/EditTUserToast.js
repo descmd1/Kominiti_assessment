@@ -1,15 +1,14 @@
 import React, { useState } from "react";
-import { toast } from "react-toastify";
 
 const EditUserToast = ({ user, onClose, onEdit }) => {
   const [newName, setNewName] = useState(user.fullname);
 
-const handleChange = (value) => {
-setNewName(value)
-}
+  const handleChange = (value) => {
+    setNewName(value);
+  };
 
- const handleApply = (e) => {
-    e.preventDefault()
+  const handleApply = (e) => {
+    e.preventDefault();
     onEdit(user, newName);
     onClose();
   };
@@ -30,10 +29,10 @@ setNewName(value)
         className="w-full border rounded p-2 mb-4"
         defaultValue={user.fullname}
         value={newName}
-        onChange={((e) =>handleChange(e.target.value))}
+        onChange={(e) => handleChange(e.target.value)}
       />
       <div className="flex justify-end">
-      <button
+        <button
           className="bg-gray-50 text-gray-700 px-4 py-2 rounded-md"
           onClick={handleCancel}
         >
